@@ -1,4 +1,4 @@
-import { required, minLength, maxLength, pattern } from '../../src';
+import { required, minLength, maxLength, pattern } from '../../index';
 
 describe('builtInValidators', () => {
   it('should validate required fields', () => {
