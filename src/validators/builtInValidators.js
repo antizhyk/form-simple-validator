@@ -56,3 +56,28 @@ export const minValue = (min) => (value) => {
 export const maxValue = (max) => (value) => {
   return typeof value === 'number' && value <= max;
 };
+
+/**
+ * Validation function for checking if a value is a valid email address.
+ * @returns {function(*): *}
+ */
+export const password = () => (value) => {
+  return value.length >= 8 && value.length <= 20;
+}
+
+
+/**
+ * Validation function for checking if a value is a valid email address.
+ * @returns {function(*): boolean}
+ */
+export const leastOneUpperCase = () => (value) => {
+  return /[A-Z]/.test(value);
+}
+
+/**
+ * Validation function for checking if a value is a valid email address.
+ * @returns {function(*): boolean}
+ */
+export const leastOneSpecialCharacter = () => (value) => {
+  return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value);
+}
