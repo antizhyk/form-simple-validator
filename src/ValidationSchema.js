@@ -71,16 +71,16 @@ class ValidationSchema {
    @param {*} value - The value of the field.
    @returns {Promise<Array>} A promise that resolves to an array of error messages if any, otherwise an empty array.
    */
-  async validateField(fieldName, value) {
+  async validateField(fieldName, value, formData) {
     const fieldRules = this.getFieldRules(fieldName);
     const errors = [];
 
-    for (const {rule, message, value: ruleValue} of fieldRules) {
+    for (const { rule, message, value: ruleValue } of fieldRules) {
       const validationFn = this.validationFunctions[rule];
 
       try {
         if (validationFn) {
-          const isValid = await Promise.resolve(validationFn(ruleValue)(value));
+          const isValid = await Promise.resolve(validationFn(ruleValue)(value, formData));
 
           if (!isValid) {
             errors.push(message);
@@ -109,7 +109,7 @@ class ValidationSchema {
       const value = formData[fieldName];
 
       try {
-        const fieldErrors = await this.validateField(fieldName, value);
+        const fieldErrors = await this.validateField(fieldName, value, formData);
 
         if (fieldErrors.length > 0) {
           errors[fieldName] = fieldErrors;

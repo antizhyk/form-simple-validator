@@ -81,3 +81,13 @@ export const leastOneUpperCase = () => (value) => {
 export const leastOneSpecialCharacter = () => (value) => {
   return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value);
 }
+
+
+/**
+ * Confirm password
+ * @returns {function(*): boolean}
+ */
+
+export const passwordConfirmation = (passwordFieldName) => (value, formData) => {
+  return value === formData[passwordFieldName];
+};

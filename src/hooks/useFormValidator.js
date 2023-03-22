@@ -16,7 +16,7 @@ const useFormValidator = (validationSchema, onSubmit, config = {}) => {
     }));
 
     if (!showErrorsOnSubmit || submitAttempted) {
-      const fieldErrors = await validationSchema.validateField(name, value);
+      const fieldErrors = await validationSchema.validateField(name, value, values);
 
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -25,7 +25,7 @@ const useFormValidator = (validationSchema, onSubmit, config = {}) => {
     }
 
     setIsValid(Object.values(errors).every((error) => !error));
-  }, [validationSchema, errors, showErrorsOnSubmit, submitAttempted]);
+  }, [validationSchema, errors, showErrorsOnSubmit, submitAttempted, values]);
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
